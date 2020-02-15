@@ -1,0 +1,9 @@
+#!/bin/sh
+name=$(cat $HOME/notes/WindowsServers.txt | awk '{print $1}' | dmenu)
+port=$(grep ${name} $HOME/notes/WindowsServers.txt | awk '{print $2}')
+if [ "$1" = "-n" ]
+then
+  exec i3-sensible-terminal -e "rdesktop -P -z -x l -f -r sound:off -r disk:archDL=/home/chris/Downloads -u Administrator localhost:$port"
+else
+  rdesktop -P -z -x l -f -r sound:off -r disk:archDL=/home/chris/Downloads -u Administrator localhost:$port
+fi

@@ -1,0 +1,5 @@
+#!/bin/sh
+sudo umount /home/chris/delivery-archive
+sudo umount /media/sf_C_DRIVE
+sudo umount /media/sf_D_DRIVE
+sudo umount /media/sf_E_DRIVE

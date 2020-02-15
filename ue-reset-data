@@ -1,0 +1,59 @@
+#!/bin/sh
+
+brokerCheck()
+{
+  brokerRunning=$(systemctl status ams-services | grep -c running)
+}
+
+ueCheck()
+{
+  temp=$(service NCRUEIOServer status | grep -c 'not running')
+  if [ "$temp" = "0" ]
+  then
+    ueRunning=1
+  else
+    ueRunning=0
+  fi
+}
+
+systemctl stop ams-services
+service NCRUEIOServer stop
+
+brokerCheck
+ueCheck
+
+if [ "$brokerRunning" = "1" ]
+then
+  echo "can't stop Rewards Service"
+  exit
+fi
+if [ "$ueRunning" = "1" ]
+then
+  echo "can't stop UE"
+  exit
+fi
+
+rm -rf /opt/ncrue/data/*
+rm -rf /opt/ncrue/cache/download/data/*
+rm -rf /opt/ncrue/logs/*
+sed -i.bak 's/Uuid=.*/Uuid=-1/' /etc/xdg/NCR_AMS/IO.ini
+
+service NCRUEIOServer start
+systemctl start ams-services
+
+brokerCheck
+ueCheck
+
+if [ "$brokerRunning" -ne "1" ]
+then
+  echo "can't start Rewards Service"
+  exit
+fi
+if [ "$ueRunning" -ne "1" ]
+then
+  echo "can't start UE"
+  exit
+fi
+
+echo "old Uuid:" & grep Uuid /etc/xdg/NCR_AMS/IO.ini.bak
+echo "new Uuid:" & grep Uuid /etc/xdg/NCR_AMS/IO.ini

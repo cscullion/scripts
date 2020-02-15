@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# exit full screen with <crtl><alt><enter>
+
+rdesktop -P -z -x l -f -r sound:off -r disk:x220DL=/home/chris/Downloads -u chris DESKTOP-RLTQ0HV:3389

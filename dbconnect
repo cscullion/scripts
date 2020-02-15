@@ -1,0 +1,12 @@
+#!/bin/sh
+name=$(cat $HOME/notes/DBServers.txt | awk '{print $1}' | dmenu)
+server=$(grep ${name} $HOME/notes/DBServers.txt | awk '{print $2}')
+db=$(printf "LogixRT\nLogixXS\nLogixEX\nLogixWH\npromotions" | dmenu)
+
+printf "exec mssql-cli -S ${server} -d ${db} -U copient_logix -P Passwordxxx"
+if [ "$1" = "-n" ]
+then
+  exec i3-sensible-terminal -e "mssql-cli -S ${server} -d ${db} -U copient_logix -P Passwordxxx"
+else
+  exec mssql-cli -S ${server} -d ${db} -U copient_logix -P Passwordxxx
+fi

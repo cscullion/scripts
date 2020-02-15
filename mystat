@@ -1,0 +1,84 @@
+#!/bin/sh
+
+update_temp() {
+  temp=$(sensors | grep 'Core 0' | awk '{ print $3 }')
+  ftemp="{\"color\":\"#FFFFFF\",\"full_text\":\"Temp: $temp\"}"
+}
+
+update_mem() {
+  freemem=$(free -h | awk '/Mem:/ {print $7}')
+  fmem="{\"color\":\"#FFFFFF\",\"full_text\":\"Mem: $freemem\"}"
+}
+
+update_vol() {
+  pulseStat=$(pulseaudio-ctl full-status)
+  volume=$(echo "$pulseStat" | awk '{ print "Vol: " $1"%" }')
+  mute=$(echo "$pulseStat" | awk '{ print $2 }')
+  if [ "$mute" = "yes" ]
+  then
+    fvol="{\"color\":\"#00FFFF\",\"full_text\":\"$volume mute\"}"
+  else
+    fvol="{\"color\":\"#FFFFFF\",\"full_text\":\"$volume\"}"
+  fi
+}
+
+update_vpn() {
+  vpnstat=$(nordvpn status | grep 'Status:' | awk '{ print $3 }') 
+  if [ "$vpnstat" = "Connected" ]
+  then
+    fvpn="{\"color\":\"#00FF00\",\"full_text\":\"VPN: On\"}"
+  else
+    fvpn="{\"color\":\"#FF0000\",\"full_text\":\"VPN: Off\"}"
+  fi
+}
+
+update_bat() {
+  upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|time to|percentage" > /tmp/batreport
+
+  bstat=$(cat /tmp/batreport | awk '/state:/ {print $2}')
+  btim1=$(cat /tmp/batreport | awk '/time/ {print $4}')
+  btim2=$(cat /tmp/batreport | awk '/time/ {print $5}')
+  bperc=$(cat /tmp/batreport | awk '/percentage:/ {print $2}')
+
+  if [ "$bstat" = "discharging" ]
+  then
+    bstat="BAT"
+  else
+    if [ "$bstat" = "fully-charged" ]
+    then
+      bstat="FULL"
+    else
+      bstat="CHG"
+    fi
+  fi
+
+  if [ -z "$btim1" ]
+  then
+    btim2=""
+  else
+    if [ "$btim2" = "hours" ]
+    then
+      btim2="hrs"
+    else
+      btim2="min"
+    fi
+  fi
+
+  if [ -z "$btim1" ]
+  then
+    fbat="{\"color\":\"#00FF00\",\"full_text\":\"$bstat $bperc\"}"
+  else
+    fbat="{\"color\":\"#FFFF00\",\"full_text\":\"$bstat $bperc $btim1 $btim2\"}"
+  fi
+}
+
+i3status | (read line && echo "$line" && read line && echo "$line" && read line && echo "$line"  && update_temp && update_mem && update_bat && update_vol && update_vpn && while :
+do
+  read line
+  update_temp
+  update_mem
+  update_bat
+  update_vol
+  update_vpn
+  echo ",[$fbat,$fvol,$fvpn,$fmem,$ftemp,${line#,\[}" || exit 1
+done)

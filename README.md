@@ -1,2 +1,2 @@
 # scripts
-Useful (to me) scripts
+useful (to me) linux scripts.

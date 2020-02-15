@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Offer>
+  <Header>
+    <IncentiveID DataType="Int64">42792</IncentiveID>
+    <EngineID DataType="Int32">2</EngineID>
+    <IsTemplate DataType="Boolean">False</IsTemplate>
+    <FromTemplate DataType="Boolean">False</FromTemplate>
+    <IncentiveName DataType="String">cks UTF-8 test</IncentiveName>
+    <Description DataType="String">UTF-8 characters ¥ ¢</Description>
+    <PromoClassID DataType="Int32">1</PromoClassID>
+    <Priority DataType="Int32">2</Priority>
+    <StartDate DataType="DateTime">3/24/2019 12:00:00 AM</StartDate>
+    <EndDate DataType="DateTime">4/24/2019 12:00:00 AM</EndDate>
+    <EveryDOW DataType="Int32">1</EveryDOW>
+    <EligibilityStartDate DataType="DateTime">3/24/2019 12:00:00 AM</EligibilityStartDate>
+    <EligibilityEndDate DataType="DateTime">3/24/2019 12:00:00 AM</EligibilityEndDate>
+    <TestingStartDate DataType="DateTime">3/24/2019 12:00:00 AM</TestingStartDate>
+    <TestingEndDate DataType="DateTime">3/24/2019 12:00:00 AM</TestingEndDate>
+    <P1DistQtyLimit DataType="Int32">1</P1DistQtyLimit>
+    <P1DistTimeType DataType="Int32">2</P1DistTimeType>
+    <P1DistPeriod DataType="Int32">1</P1DistPeriod>
+    <P3DistQtyLimit DataType="Int32">1</P3DistQtyLimit>
+    <P3DistTimeType DataType="Int32">2</P3DistTimeType>
+    <P3DistPeriod DataType="Int32">1</P3DistPeriod>
+    <EnableRedeemRpt DataType="Boolean">True</EnableRedeemRpt>
+    <CreatedDate DataType="DateTime">3/25/2019 10:19:16 AM</CreatedDate>
+    <LastUpdate DataType="DateTime">3/25/2019 10:22:17 AM</LastUpdate>
+    <Deleted DataType="Int32">0</Deleted>
+    <StatusFlag DataType="Int32">1</StatusFlag>
+    <UpdateLevel DataType="Int32">0</UpdateLevel>
+    <CRMEngineID DataType="Int32">0</CRMEngineID>
+    <CRMEngineUpdateLevel DataType="Int32">0</CRMEngineUpdateLevel>
+    <CPEOADeployStatus DataType="Int32">0</CPEOADeployStatus>
+    <DisabledOnCFW DataType="Boolean">True</DisabledOnCFW>
+    <AllowOptOut DataType="Boolean">False</AllowOptOut>
+    <EmployeesOnly DataType="Boolean">False</EmployeesOnly>
+    <EmployeesExcluded DataType="Boolean">False</EmployeesExcluded>
+    <DeferCalcToEOS DataType="Boolean">False</DeferCalcToEOS>
+    <CreatedByAdminID DataType="Int32">13</CreatedByAdminID>
+    <LastUpdatedByAdminID DataType="Int32">13</LastUpdatedByAdminID>
+    <SendIssuance DataType="Int32">0</SendIssuance>
+    <EveryTOD DataType="Int32">1</EveryTOD>
+    <ManufacturerCoupon DataType="Int32">0</ManufacturerCoupon>
+    <VendorCouponCode DataType="String"></VendorCouponCode>
+    <TierLevels DataType="Byte">1</TierLevels>
+    <MutuallyExclusive DataType="Boolean">False</MutuallyExclusive>
+    <EnableImpressRpt DataType="Boolean">False</EnableImpressRpt>
+    <EngineSubTypeID DataType="Int32">0</EngineSubTypeID>
+    <AutoTransferable DataType="Boolean">True</AutoTransferable>
+    <RestrictedRedemption DataType="Boolean">False</RestrictedRedemption>
+    <DisplayOnWebKiosk DataType="Boolean">False</DisplayOnWebKiosk>
+    <UseLegacyWebKiosk DataType="Boolean">False</UseLegacyWebKiosk>
+    <AutoTranslateToUE DataType="Boolean">False</AutoTranslateToUE>
+  </Header>
+  <Conditions>
+    <Customer>
+      <IncentiveCustomerID DataType="Int32">7090</IncentiveCustomerID>
+      <RewardOptionID DataType="Int64">42801</RewardOptionID>
+      <CustomerGroupID DataType="Int32">2</CustomerGroupID>
+      <ExcludedUsers DataType="Boolean">false</ExcludedUsers>
+      <Deleted DataType="Boolean">false</Deleted>
+      <LastUpdate DataType="DateTime">3/25/2019 10:21:40 AM</LastUpdate>
+      <ConditionNumber DataType="String">0</ConditionNumber>
+      <HHEnable DataType="Boolean">false</HHEnable>
+      <RequiredFromTemplate DataType="Boolean">false</RequiredFromTemplate>
+    </Customer>
+  </Conditions>
+  <Notifications />
+  <Rewards>
+    <PrintedMessage>
+      <MessageID DataType="Int64">567</MessageID>
+      <MessageTypeID DataType="Int32">0</MessageTypeID>
+      <SuppressZeroBalance DataType="Boolean">true</SuppressZeroBalance>
+      <TierLevel DataType="Int32">1</TierLevel>
+      <BodyText DataType="String">blah</BodyText>
+      <RewardOptionPhase DataType="Int32">3</RewardOptionPhase>
+      <Tiers>
+        <Tier>
+          <PKID DataType="Int64">602</PKID>
+          <MessageID DataType="Int64">567</MessageID>
+          <TierLevel DataType="Int32">1</TierLevel>
+          <BodyText DataType="String">blah</BodyText>
+          <Value DataType="Decimal">0.000</Value>
+          <LastUpdate DataType="DateTime">3/25/2019 10:21:55 AM</LastUpdate>
+        </Tier>
+      </Tiers>
+    </PrintedMessage>
+  </Rewards>
+  <Auxilary>
+    <CustomerGroup>
+      <Header>
+        <CustomerGroupID>2</CustomerGroupID>
+        <Name>Any Cardholder</Name>
+        <NewCardholders>false</NewCardholders>
+        <AnyCAMCardholder>false</AnyCAMCardholder>
+        <IsOptInGroup>false</IsOptInGroup>
+      </Header>
+    </CustomerGroup>
+    <LocationGroup>
+      <Header>
+        <LocationGroupID>1</LocationGroupID>
+        <Name>All Locations</Name>
+        <CreatedDate>3/9/2015 1:31:17 PM</CreatedDate>
+        <ExtGroupID>112233</ExtGroupID>
+        <ExtSeqNum>0</ExtSeqNum>
+        <ExtExcluded>false</ExtExcluded>
+        <AllLocations>true</AllLocations>
+        <LastUpdate>3/9/2015 1:31:17 PM</LastUpdate>
+        <StatusFlag>0</StatusFlag>
+        <TCRMAStatusFlag>0</TCRMAStatusFlag>
+        <ExcludedLocationGroup>false</ExcludedLocationGroup>
+      </Header>
+      <Locations />
+    </LocationGroup>
+    <Terminal>
+      <Header>
+        <TerminalTypeID>2</TerminalTypeID>
+        <Name>All CPE Terminals</Name>
+        <Description>All CPE Terminals</Description>
+        <ExtTerminalCode>1</ExtTerminalCode>
+        <LastUpdate>3/9/2015 1:31:26 PM</LastUpdate>
+        <LayoutID>0</LayoutID>
+        <EngineID>2</EngineID>
+        <SpecificPromosOnly>0</SpecificPromosOnly>
+        <FuelProcessing>false</FuelProcessing>
+        <AnyTerminal>true</AnyTerminal>
+        <BannerID>0</BannerID>
+        <Excluded>false</Excluded>
+      </Header>
+    </Terminal>
+  </Auxilary>
+  <Translations>
+    <OfferTranslations>
+      <Translation>
+        <OfferID DataType="Int64">42792</OfferID>
+        <LanguageID DataType="Int32">1</LanguageID>
+        <OfferDescription DataType="String">UTF-8 characters ¥ ¢</OfferDescription>
+      </Translation>
+    </OfferTranslations>
+    <PMTranslations>
+      <Translation>
+        <PMTiersID DataType="Int64">602</PMTiersID>
+        <LanguageID DataType="Int32">1</LanguageID>
+        <BodyText DataType="String">blah</BodyText>
+      </Translation>
+    </PMTranslations>
+  </Translations>
+</Offer>

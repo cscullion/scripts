@@ -1,0 +1,2 @@
+#!/bin/sh
+sudo mount -t cifs //DESKTOP-RLTQ0HV/video /mnt/win -o username=chris,password=xxxxxxxx

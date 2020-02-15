@@ -1,0 +1,9 @@
+#!/bin/sh
+name=$(cat $HOME/notes/LinuxServers.txt | awk '{print $1}' | dmenu)
+host=$(grep ${name} $HOME/notes/LinuxServers.txt | awk '{print $2}')
+if [ "$1" = "-n" ]
+then
+  exec i3-sensible-terminal -e "ssh -J chris@cksgateway1 root@$host"
+else
+  ssh -J chris@cksgateway1 root@$host
+fi

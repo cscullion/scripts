@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# exit full screen sith <ctrl><alt><enter>
+
+rdesktop -P -z -x l -f -r sound:off -r disk:archHome=/home/chris -u Administrator localhost:53390

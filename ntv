@@ -1,0 +1,9 @@
+#!/bin/bash
+cat /dev/null > ~/vt.txt
+for f in $(ls ~/notes/20*.txt -1t);
+do
+  echo -e "\n ***File $f \n" >> ~/vt.txt
+  cat $f >> ~/vt.txt
+done;
+less -I ~/vt.txt
+rm ~/vt.txt

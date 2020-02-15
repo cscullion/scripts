@@ -1,0 +1,4 @@
+#!/bin/sh
+nmcli d wifi list
+echo "to connect:"
+echo "nmcli d wifi connect <SSID> password <wifi password>"

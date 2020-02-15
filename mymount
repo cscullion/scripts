@@ -1,0 +1,5 @@
+#!/bin/sh
+sudo mount -t vboxsf C_DRIVE /media/sf_C_DRIVE
+sudo mount -t vboxsf D_DRIVE /media/sf_D_DRIVE
+sudo mount -t vboxsf E_DRIVE /media/sf_E_DRIVE
+sudo mount -t cifs //153.73.240.198/ftproot /home/chris/delivery-archive -o username=CMTeam,password=xxxxxxxx

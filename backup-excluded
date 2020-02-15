@@ -1,0 +1,18 @@
+Downloads/*
+.cache/*
+Nextcloud/*
+snap/*
+.mozilla/*
+.config/BraveSoftware/*
+.config/google-chrome/*
+.config/chromium/*
+.config/lbry
+.config/LBRY
+.eclipse/*
+.local/share/qutebrowser/*
+VirtualBox VMs/*
+retrocomp/z80pack/*
+.local/share/lbry*
+.config/LBRY/Cache/*
+scripts/*
+VideoDecodeStats

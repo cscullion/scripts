@@ -1,0 +1,8 @@
+#!/bin/sh
+filename=$HOME/notes/$( date +%Y%m%d ).txt
+if [ "$1" = "-n" ]
+then
+  exec vim ${filename}
+else
+  exec i3-sensible-terminal -e vim ${filename}
+fi

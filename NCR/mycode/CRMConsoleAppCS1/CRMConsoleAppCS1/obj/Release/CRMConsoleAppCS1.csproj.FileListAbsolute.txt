@@ -1,0 +1,9 @@
+C:\Users\cs250329\source\repos\CRMConsoleAppCS1\CRMConsoleAppCS1\bin\Release\CRMConsoleAppCS1.exe.config
+C:\Users\cs250329\source\repos\CRMConsoleAppCS1\CRMConsoleAppCS1\bin\Release\CRMConsoleAppCS1.exe
+C:\Users\cs250329\source\repos\CRMConsoleAppCS1\CRMConsoleAppCS1\bin\Release\CRMConsoleAppCS1.XmlSerializers.dll
+C:\Users\cs250329\source\repos\CRMConsoleAppCS1\CRMConsoleAppCS1\bin\Release\CRMConsoleAppCS1.pdb
+C:\Users\cs250329\source\repos\CRMConsoleAppCS1\CRMConsoleAppCS1\obj\Release\CRMConsoleAppCS1.csprojAssemblyReference.cache
+C:\Users\cs250329\source\repos\CRMConsoleAppCS1\CRMConsoleAppCS1\obj\Release\CRMConsoleAppCS1.csproj.CoreCompileInputs.cache
+C:\Users\cs250329\source\repos\CRMConsoleAppCS1\CRMConsoleAppCS1\obj\Release\CRMConsoleAppCS1.exe
+C:\Users\cs250329\source\repos\CRMConsoleAppCS1\CRMConsoleAppCS1\obj\Release\CRMConsoleAppCS1.pdb
+C:\Users\cs250329\source\repos\CRMConsoleAppCS1\CRMConsoleAppCS1\obj\Release\CRMConsoleAppCS1.XmlSerializers.dll

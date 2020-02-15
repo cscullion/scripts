@@ -1,0 +1,2 @@
+#!/bin/sh
+nmcli connection up "Wired connection 2"

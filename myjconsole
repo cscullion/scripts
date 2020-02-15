@@ -1,0 +1,3 @@
+#!/bin/sh
+cat ~/notes/jconsole.txt
+/opt/wildfly-10.0.0.Final/bin/jconsole.sh &

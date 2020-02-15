@@ -1,0 +1,3 @@
+#!/bin/sh
+xrandr --output LVDS-1 --auto --output HDMI-1 --auto --left-of LVDS-1
+

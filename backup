@@ -1,0 +1,2 @@
+#!/bin/sh
+rsync -av /home/chris /home/chris/Nextcloud/backup/x220-arch/ --exclude-from=/home/chris/scripts/backup-excluded --delete-excluded

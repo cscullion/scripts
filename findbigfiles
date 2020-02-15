@@ -1,0 +1,2 @@
+#!/bin/bash
+find ~ -xdev -type f -printf "%s\t%p\n" | sort -nr | head -10
