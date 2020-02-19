@@ -24,14 +24,14 @@ else
 # clear and recreate data directory
   sudo rm -rf $DATA_DIR
   sudo mkdir $DATA_DIR
-  sudo chown ncrue:ncrue $DATA_DIR
-  sudo chmod 755 $DATA_DIR
 
 # clear and recreate cache/download/data directory
   sudo rm -rf $CACHE_DIR
   sudo mkdir $CACHE_DIR
-  sudo chown ncrue:ncrue $CACHE_DIR
-  sudo chmod 755 $CACHE_DIR
+
+# check and reset file permissions
+  echo "`date`: Cleaning up file permissions" >> $LOG
+  sudo /opt/ncrue/installation/perms.sh
 
   echo "`date`: starting NCRUEIOServer" >> $LOG
   sudo service NCRUEIOServer start
