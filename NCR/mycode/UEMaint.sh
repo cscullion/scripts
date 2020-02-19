@@ -2,6 +2,8 @@
 
 NOW=$(date +"%m-%d-%Y")
 LOG="/opt/ncrue/logs/UEMaint_$NOW.log"
+DATA_DIR="/opt/ncrue/data"
+CACHE_DIR="/opt/ncrue/cache/download/data"
 
 echo "`date`: stopping amsbroker" >> $LOG
 sudo systemctl stop amsbroker
@@ -18,8 +20,19 @@ if [ "${result}" -eq "0" ] ; then
 else
   echo "`date`: NCRUEIOServer is not running, cleaning up data and attempting restart" >> $LOG
   echo "`date`: Cleaning data and cache directories" >> $LOG
-  rm -rf /opt/ncrue/data/*
-  rm -rf /opt/ncrue/cache/download/data/*
+
+# clear and recreate data directory
+  sudo rm -rf $DATA_DIR
+  sudo mkdir $DATA_DIR
+  sudo chown ncrue:ncrue $DATA_DIR
+  sudo chmod 755 $DATA_DIR
+
+# clear and recreate cache/download/data directory
+  sudo rm -rf $CACHE_DIR
+  sudo mkdir $CACHE_DIR
+  sudo chown ncrue:ncrue $CACHE_DIR
+  sudo chmod 755 $CACHE_DIR
+
   echo "`date`: starting NCRUEIOServer" >> $LOG
   sudo service NCRUEIOServer start
 fi
