@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# extracts a date stamp from an AMS PromoDataSnapshot*.lst file
+
+date=$(dd if=$1 ibs=1 skip=16 count=20 status=none | tr -d '\0' | tr "." "-")
+echo $date
