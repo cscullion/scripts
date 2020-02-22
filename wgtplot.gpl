@@ -1,0 +1,9 @@
+set term qt persist
+set xdata time
+set timefmt "%Y-%m-%d"
+#b="`date --date='15 weeks ago' +%Y-%m-%d`"
+set xrange ["`date --date='3 weeks ago' +%Y-%m-%d`":"`date +%Y-%m-%d`"]
+#set xrange ["b":"`date +%Y-%m-%d`"]
+#show xrange
+
+plot "/home/chris/weight.dat" using 1:2 with line

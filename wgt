@@ -1,0 +1,37 @@
+#!/bin/bash
+
+DATAFILE=/home/chris/weight.dat
+
+now=$(date +%Y-%m-%d)
+show=0
+
+if [ ! -z $1 ]
+then
+	if [ $1 = "-s" ]
+	then
+		show=1
+	else
+		weight=$1
+	fi
+fi
+
+if [ $show -gt 0 ]
+then
+	gnuplot wgtplot.gpl
+	exit 0
+fi
+
+if [ -z $weight ]
+then
+	echo Enter today\'s weight
+	read weight
+fi
+
+if [ ! -e $DATAFILE ]
+then
+	echo "# weight data (date weight)" > $DATAFILE
+fi
+
+echo $now  $weight >> $DATAFILE
+
+gnuplot wgtplot.gpl
