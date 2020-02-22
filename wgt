@@ -17,7 +17,7 @@ fi
 
 if [ $show -gt 0 ]
 then
-	gnuplot wgtplot.gpl
+	gnuplot -e "filename='$DATAFILE'" wgtplot.gpl
 	exit 0
 fi
 
@@ -34,4 +34,4 @@ fi
 
 echo $now  $weight >> $DATAFILE
 
-gnuplot wgtplot.gpl
+gnuplot -e "filename='$DATAFILE'" wgtplot.gpl

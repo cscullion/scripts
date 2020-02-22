@@ -6,4 +6,4 @@ set xrange ["`date --date='3 weeks ago' +%Y-%m-%d`":"`date +%Y-%m-%d`"]
 #set xrange ["b":"`date +%Y-%m-%d`"]
 #show xrange
 
-plot "/home/chris/Nextcloud/personal/weight.dat" using 1:2 with line
+plot filename using 1:2 with line
