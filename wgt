@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DATAFILE=/home/chris/weight.dat
+DATAFILE=/home/chris/Nextcloud/personal/weight.dat
 
 now=$(date +%Y-%m-%d)
 show=0
