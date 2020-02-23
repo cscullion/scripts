@@ -14,5 +14,4 @@ VirtualBox VMs/*
 retrocomp/z80pack/*
 .local/share/lbry*
 .config/LBRY/Cache/*
-scripts/*
 VideoDecodeStats

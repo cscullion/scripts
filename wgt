@@ -3,6 +3,7 @@
 DATAFILE=/home/chris/Nextcloud/personal/weight.dat
 
 now=$(date +%Y-%m-%d)
+before=$(date --date="3 weeks ago" +%Y-%m-%d)
 show=0
 
 if [ ! -z $1 ]
@@ -10,6 +11,10 @@ then
 	if [ $1 = "-s" ]
 	then
 		show=1
+		if [ ! -z $2 ]
+		then
+			before=$(date --date="$2 weeks ago" +%Y-%m-%d)
+		fi
 	else
 		weight=$1
 	fi
@@ -17,7 +22,7 @@ fi
 
 if [ $show -gt 0 ]
 then
-	gnuplot -e "filename='$DATAFILE'" wgtplot.gpl
+	gnuplot -p -e "set xdata time;set timefmt \"%Y-%m-%d\";set xrange [\"$before\":\"$now\"];plot \"$DATAFILE\" using 1:2 with line"
 	exit 0
 fi
 
@@ -34,4 +39,4 @@ fi
 
 echo $now  $weight >> $DATAFILE
 
-gnuplot -e "filename='$DATAFILE'" wgtplot.gpl
+gnuplot -p -e "set xdata time;set timefmt \"%Y-%m-%d\";set xrange [\"$before\":\"$now\"];plot \"$DATAFILE\" using 1:2 with line"
