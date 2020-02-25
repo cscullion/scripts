@@ -3,7 +3,7 @@
 DATAFILE=/home/chris/Nextcloud/personal/weight.dat
 
 now=$(date +%Y-%m-%d)
-before=$(date --date="3 weeks ago" +%Y-%m-%d)
+before=$(date --date="8 weeks ago" +%Y-%m-%d)
 show=0
 
 if [ ! -z $1 ]
