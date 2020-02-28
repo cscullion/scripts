@@ -1,7 +1,6 @@
 #!/bin/sh
 name=$(cat $HOME/notes/LinuxServers.txt | awk '{print $1}' | dmenu)
 host=$(grep ${name} $HOME/notes/LinuxServers.txt | awk '{print $2}')
-echo $name, $host
 if [ "$1" = "-n" ]
 then
 	if [ $host = "d" ]
@@ -13,10 +12,8 @@ then
 else
 	if [ $host = "d" ]
 	then
-		echo ssh root@$name
 		ssh root@$name
 	else
-		echo using jump server
 		ssh -J chris@cksgateway1 root@$host
 	fi
 fi
