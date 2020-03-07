@@ -1,6 +1,8 @@
 Downloads/*
 .cache/*
 Nextcloud/*
+Dropbox/*
+aur/*
 snap/*
 .mozilla/*
 .config/BraveSoftware/*
@@ -9,6 +11,9 @@ snap/*
 .config/lbry
 .config/LBRY
 .eclipse/*
+.dropbox/*
+.dropbox-dist/*
+.dropbox-dist
 .local/share/qutebrowser/*
 VirtualBox VMs/*
 retrocomp/z80pack/*
