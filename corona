@@ -1,0 +1,4 @@
+#!/bin/bash
+
+curl -s https://corona-stats.online/us > /tmp/corona.txt && grep "State\|Florida\|Kansas\|Georgia\|Ohio\|Virginia" /tmp/corona.txt | grep -v "West" && rm -f /tmp/corona.txt
+
