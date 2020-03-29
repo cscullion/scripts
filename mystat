@@ -40,17 +40,14 @@ update_bat() {
   btim2=$(cat /tmp/batreport | awk '/time/ {print $5}')
   bperc=$(cat /tmp/batreport | awk '/percentage:/ {print $2}')
 
-  if [ "$bstat" = "discharging" ]
-  then
-    bstat="BAT"
-  else
-    if [ "$bstat" = "fully-charged" ]
-    then
-      bstat="FULL"
-    else
-      bstat="CHG"
-    fi
-  fi
+	case $bstat in
+		"discharging") bstat="BAT"
+			;;
+		"fully-charged") bstat="FULL"
+			;;
+		*) bstat="CHG"
+			;;
+	esac
 
   if [ -z "$btim1" ]
   then
