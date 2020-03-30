@@ -1,19 +1,20 @@
 #!/bin/sh
 name=$(cat $HOME/notes/LinuxServers.txt | awk '{print $1}' | dmenu)
 host=$(grep ${name} $HOME/notes/LinuxServers.txt | awk '{print $2}')
+user=$(grep ${name} $HOME/notes/LinuxServers.txt | awk '{print $3}')
 if [ "$1" = "-n" ]
 then
 	if [ $host = "d" ]
 	then
-		exec i3-sensible-terminal -e "ssh root@$name"
+		exec i3-sensible-terminal -e "ssh $user@$name"
 	else
-		exec i3-sensible-terminal -e "ssh -J chris@cksgateway1 root@$host"
+		exec i3-sensible-terminal -e "ssh -J chris@cksgateway1 $user@$host"
 	fi
 else
 	if [ $host = "d" ]
 	then
-		ssh root@$name
+		ssh $user@$name
 	else
-		ssh -J chris@cksgateway1 root@$host
+		ssh -J chris@cksgateway1 $user@$host
 	fi
 fi
