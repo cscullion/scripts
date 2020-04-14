@@ -36,20 +36,16 @@ while [ true ]; do
         rem_bat=$(echo $acpi_text | grep -Eo "[0-9]+%" | grep -Eo "[0-9]+")
         # echo $rem_bat
 
-        if [[ $rem_bat -gt $SAFE_PERCENT ]]; then
-            # echo "safe"
-        else
-            if [[ $rem_bat -le $DANGER_PERCENT ]]; then
-                # echo "danger"
-                launchNagBar
-                notify-send "low battery!"
-            fi
-            if [[ $rem_bat -le $CRITICAL_PERCENT ]]; then
-                # echo "critical"
-                systemctl suspend
-            fi
-        fi
-    fi
+		if [[ $rem_bat -le $DANGER_PERCENT ]]; then
+			# echo "danger"
+			launchNagBar
+			notify-send "low battery!"
+		fi
+		if [[ $rem_bat -le $CRITICAL_PERCENT ]]; then
+			# echo "critical"
+			systemctl suspend
+		fi
+	fi
 
     # echo "sleeping $SLEEP_TIME"
     sleep ${SLEEP_TIME}s
