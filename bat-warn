@@ -1,6 +1,6 @@
 #! /bin/bash
 
-SLEEP_TIME=5   # Default time between checks.
+SLEEP_TIME=60   # Default time between checks. (seconds)
 SAFE_PERCENT=30  # Still safe at this level.
 DANGER_PERCENT=29  # Warn when battery at this level.
 CRITICAL_PERCENT=20  # Hibernate when battery at this level.
@@ -30,31 +30,28 @@ while [ true ]; do
 
     killNagBar
 
-    if [[ -n $(acpi -b | grep -i discharging) ]]; then
-        rem_bat=$(acpi -b | grep -Eo "[0-9]+%" | grep -Eo "[0-9]+")
+    acpi_text=$(acpi -b)
+
+    if [[ -n $(echo $acpi_text | grep -i discharging) ]]; then
+        rem_bat=$(echo $acpi_text | grep -Eo "[0-9]+%" | grep -Eo "[0-9]+")
+        # echo $rem_bat
 
         if [[ $rem_bat -gt $SAFE_PERCENT ]]; then
             # echo "safe"
-            SLEEP_TIME=5
         else
-            SLEEP_TIME=2
             if [[ $rem_bat -le $DANGER_PERCENT ]]; then
                 # echo "danger"
-                SLEEP_TIME=2
                 launchNagBar
                 notify-send "low battery!"
             fi
             if [[ $rem_bat -le $CRITICAL_PERCENT ]]; then
                 # echo "critical"
-                SLEEP_TIME=1
                 systemctl suspend
             fi
         fi
-    else
-        SLEEP_TIME=10
     fi
 
     # echo "sleeping $SLEEP_TIME"
-    sleep ${SLEEP_TIME}m
+    sleep ${SLEEP_TIME}s
 
 done
