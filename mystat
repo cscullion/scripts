@@ -76,6 +76,5 @@ do
   update_mem
   update_bat
   update_vol
-  update_vpn
-  echo ",[$fbat,$fvol,$fvpn,$fmem,$ftemp,${line#,\[}" || exit 1
+  echo ",[$fbat,$fvol,$fmem,$ftemp,${line#,\[}" || exit 1
 done)
