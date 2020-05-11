@@ -40,6 +40,7 @@ while [ true ]; do
 			# echo "danger"
 			launchNagBar
 			notify-send "low battery!"
+			echo -ne '\007'
 		fi
 		if [[ $rem_bat -le $CRITICAL_PERCENT ]]; then
 			# echo "critical"
