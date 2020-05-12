@@ -1,0 +1,75 @@
+#!/bin/sh
+
+update_temp() {
+  temp=$(sensors | grep 'Core 0' | awk '{ print $3 }')
+  ftemp="Temp: $temp"
+}
+
+update_mem() {
+  freemem=$(free -h | awk '/Mem:/ {print $7}')
+  fmem="Mem: $freemem"
+}
+
+update_vol() {
+  pulseStat=$(pulseaudio-ctl full-status)
+  volume=$(echo "$pulseStat" | awk '{ print "Vol: " $1"%" }')
+  mute=$(echo "$pulseStat" | awk '{ print $2 }')
+  if [ "$mute" = "yes" ]
+  then
+    fvol="$volume mute"
+  else
+    fvol="$volume"
+  fi
+}
+
+update_bat() {
+  upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|time to|percentage" > /tmp/batreport
+
+  bstat=$(cat /tmp/batreport | awk '/state:/ {print $2}')
+  btim1=$(cat /tmp/batreport | awk '/time/ {print $4}')
+  btim2=$(cat /tmp/batreport | awk '/time/ {print $5}')
+  bperc=$(cat /tmp/batreport | awk '/percentage:/ {print $2}')
+
+	case $bstat in
+		"discharging") bstat="BAT"
+			;;
+		"fully-charged") bstat="FULL"
+			;;
+		*) bstat="CHG"
+			;;
+	esac
+
+  if [ -z "$btim1" ]
+  then
+    btim2=""
+  else
+    if [ "$btim2" = "hours" ]
+    then
+      btim2="hrs"
+    else
+      btim2="min"
+    fi
+  fi
+
+  if [ -z "$btim1" ]
+  then
+    fbat="$bstat $bperc"
+  else
+    fbat="$bstat $bperc $btim1 $btim2"
+  fi
+}
+
+update_date() {
+  fdate=$(date +"%m/%d/%Y %I:%M %p")
+}
+
+while true
+do
+  update_temp
+  update_mem
+  update_bat
+  update_vol
+  update_date
+  xsetroot -name "|$fbat|$fvol|$fmem|$ftemp|$fdate"
+  sleep 30s
+done
