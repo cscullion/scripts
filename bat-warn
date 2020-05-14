@@ -41,6 +41,7 @@ while [ true ]; do
 			launchNagBar
 			notify-send "low battery!"
 			echo -ne '\007'
+			aplay -q ~/audio/notify.wav
 		fi
 		if [[ $rem_bat -le $CRITICAL_PERCENT ]]; then
 			# echo "critical"
