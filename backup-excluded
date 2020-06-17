@@ -5,6 +5,7 @@ Dropbox/*
 aur/*
 snap/*
 .mozilla/*
+.config/autostart/*
 .config/BraveSoftware/*
 .config/google-chrome/*
 .config/chromium/*
