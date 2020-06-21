@@ -1,0 +1,3 @@
+#!/bin/sh
+cd ~/Downloads/ytq
+youtube-dl -q $1 &

@@ -1,0 +1,4 @@
+#!/bin/sh
+cd ~/Downloads/ytq
+vid=$(ls -1 | dmenu -l 20)
+mpv "$vid"
