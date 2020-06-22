@@ -1,3 +1,4 @@
 #!/bin/sh
 
-mpv --loop-file=inf "https://radar.weather.gov/lite/N0R/JGX_loop.gif"
+curl "https://radar.weather.gov/lite/N0R/JGX_loop.gif" > ~/Downloads/doppler.gif
+mpv --loop-file=inf ~/Downloads/doppler.gif
