@@ -4,7 +4,7 @@ plot() {
 	gnuplot -p -e "set xdata time;set timefmt \"%Y-%m-%d\";set xrange [\"$before\":\"$now\"];plot \"$DATAFILE\" using 1:2 with line"
 }
 
-DATAFILE=/home/chris/Nextcloud/personal/weight.dat
+DATAFILE=/home/chris/nc/personal/weight.dat
 
 now=$(date +%Y-%m-%d)
 before=$(date --date="8 weeks ago" +%Y-%m-%d)
