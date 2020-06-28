@@ -1,0 +1,3 @@
+#!/bin/sh
+cd ~/Downloads/ytq/audio
+youtube-dl -x -f bestaudio/best $1 &
