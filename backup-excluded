@@ -16,6 +16,7 @@ snap/*
 .dropbox-dist/*
 .dropbox-dist
 .local/share/qutebrowser/*
+.local/share/vifm/*
 VirtualBox VMs/*
 retrocomp/z80pack/*
 .local/share/lbry*
