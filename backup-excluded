@@ -1,10 +1,12 @@
 Downloads/*
 .cache/*
 nc/*
+Nextcloud.old/*
 Dropbox/*
 aur/*
 snap/*
 .mozilla/*
+.cargo/*
 .config/autostart/*
 .config/BraveSoftware/*
 .config/google-chrome/*
@@ -22,3 +24,5 @@ retrocomp/z80pack/*
 .local/share/lbry*
 .config/LBRY/Cache/*
 VideoDecodeStats
+src/XCel/*
+.git/
