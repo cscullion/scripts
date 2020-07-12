@@ -1,5 +1,5 @@
 #!/bin/bash
 
-curl -s https://corona-stats.online/states/us | grep "State\|Total\|Florida\|Kansas\|Georgia\|Ohio\|Virginia"  | grep -v "West"  | grep -v "Island"
+curl -s https://corona-stats.online/states/us | grep "║"  | head -n 11
 curl -s https://corona-stats.online?source=1 | grep "║" | head -n 12
 
