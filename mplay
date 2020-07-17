@@ -1,4 +1,27 @@
 #!/bin/bash
-for f in ./*; do
-	tsp ffplay $f
-done
+if [ -z $1 ]
+then
+	for f in ./*; do
+		tsp ffplay $f
+	done
+else
+	case $1 in
+		"-h") echo "usage:"
+				echo "mplay -h: show help"
+				echo "mplay -l: list queue"
+				echo "mplay -l: list queue"
+				echo "mplay -k: kill all"
+				echo "mplay file file file...: add files to queue"
+				echo "mplay: add all files to queue"
+			;;
+		"-l") tsp -Cl | grep -v "ID" | awk '{print $5}'
+			;;
+		"-k") tsp -K && killall ffplay
+			;;
+		*) 
+			for f in "$@"; do
+				tsp ffplay $f
+			done
+			;;
+	esac
+fi
