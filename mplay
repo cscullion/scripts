@@ -1,0 +1,4 @@
+#!/bin/bash
+for f in ./*; do
+	tsp ffplay $f
+done
