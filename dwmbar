@@ -1,18 +1,33 @@
 #!/bin/sh
+update_inet() {
+	netdev=$( ip link show | grep "state UP" | awk '{ print $2 }' | cut -d ":" -f 1)
+	if [ -z $netdev ]
+	then
+		finet="Net dn"
+	else
+		inet=$(ip a | grep inet | grep $netdev | awk '{ print $2 }' | cut -d "/" -f 1)
+		finet="Net $inet"
+	fi
+}
+
+update_cpu() {
+	cpu=$(uptime | awk '{ print $11 }')
+	fcpu="Ld $cpu"
+}
 
 update_temp() {
   temp=$(sensors | grep 'Core 0' | awk '{ print $3 }')
-  ftemp="Temp: $temp"
+  ftemp="Tmp $temp"
 }
 
 update_mem() {
   freemem=$(free -h | awk '/Mem:/ {print $7}')
-  fmem="Mem: $freemem"
+  fmem="Mem $freemem"
 }
 
 update_vol() {
   pulseStat=$(pulseaudio-ctl full-status)
-  volume=$(echo "$pulseStat" | awk '{ print "Vol: " $1"%" }')
+  volume=$(echo "$pulseStat" | awk '{ print "Vol " $1"%" }')
   mute=$(echo "$pulseStat" | awk '{ print $2 }')
   if [ "$mute" = "yes" ]
   then
@@ -70,6 +85,8 @@ do
   update_bat
   update_vol
   update_date
-  xsetroot -name "|$fbat|$fvol|$fmem|$ftemp|$fdate"
+  update_cpu
+  update_inet
+  xsetroot -name "|$finet|$fbat|$fvol|$fmem|$ftemp|$fcpu|$fdate"
   sleep 30s
 done
