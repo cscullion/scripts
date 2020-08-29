@@ -2,7 +2,7 @@
 if [ -z $1 ]
 then
 	for f in ./*; do
-		tsp ffplay "$f"
+		tsp ffplay -autoexit "$f"
 	done
 else
 	case $1 in
@@ -19,7 +19,7 @@ else
 			;;
 		*) 
 			for f in "$@"; do
-				tsp ffplay "$f"
+				tsp ffplay -autoexit "$f"
 			done
 			;;
 	esac

@@ -1,2 +1,2 @@
 #!/bin/sh
-sudo mount -t cifs //DESKTOP-RLTQ0HV/video /mnt/win -o username=chris
+sudo mount -t cifs //plex2/movies /mnt/win -o username=chris
