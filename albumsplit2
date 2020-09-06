@@ -2,22 +2,22 @@
 
 # Requires ffmpeg (audio splitting) and my `tag` wrapper script.
 # This version uses the following track list format:
-# start-time title
+# startSeconds endSeconds title
 # for example:
 #
-#3:00 Mustapha
-#4:16 Fat Bottom Girls
-#3:06 Jealousy
-#3:07 Bicycle Race
-#4:15 If You Can't Beat Them
-#3:01 Let Me Entertain You
-#3:23 Dead On Time
-#2:29 In Only Seven Days
-#3:40 Dreamer's Ball
-#3:30 Fun It
-#3:13 Leaving Home Ain't Easy
-#3:29 Don't Stop Me Now
-#4:12 More of That Jazz
+#0 180 Mustapha
+#180 436 Fat Bottom Girls
+#436 622 Jealousy
+#622 809 Bicycle Race
+#809 1065 If You Can't Beat Them
+#1065 1246 Let Me Entertain You
+#1246 1449 Dead On Time
+#1449 1598 In Only Seven Days
+#1598 1818 Dreamer's Ball
+#1818 2028 Fun It
+#2028 2221 Leaving Home Ain't Easy
+#2221 2430 Don't Stop Me Now
+#2430 2682 More of That Jazz
 
 [ ! -f "$2" ] && printf "The first file should be the audio, the second should be the timecodes.\\n" && exit
 
@@ -42,23 +42,21 @@ ext="opus"
 total="$(wc -l < "$2")"
 
 track=1
-start="00:00:00"
+zeroSec="00:00:00"
 while read -r x;
 do
     # echo $x
-    duration="$(echo "$x" | cut -d' ' -f1)"
-    durationM="$(echo "$duration" | cut -d':' -f1)"
-    durationS="$(echo "$duration" | cut -d':' -f2)"
-    # echo "duration: " $duration " durationM: " $durationM " durationS: " $durationS
-    end="$(date -d "$start $durationM minutes $durationS seconds" +'%H:%M:%S')"
-    # echo "start:" $start "  end:" $end
-    title="$(echo "$x" | cut -d' ' -f 2-)"
+    startSec="$(echo "$x" | cut -d' ' -f1)"
+    endSec="$(echo "$x" | cut -d' ' -f2)"
+    start="$(date -d "$zeroSec $startSec seconds" +'%H:%M:%S')"
+    end="$(date -d "$zeroSec $endSec seconds" +'%H:%M:%S')"
+	echo "start: " $start "  end: " $end
+    title="$(echo "$x" | cut -d' ' -f 3-)"
     esctitle="$(echo "$title" | iconv -cf UTF-8 -t ASCII//TRANSLIT | tr -d '[:punct:]' | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | sed "s/-\+/-/g;s/\(^-\|-\$\)//g")"
     [ -n "$start" ] &&
     echo "From $start to $end; $track $title"
     file="$escbook/$(printf "%.2d" "$track")-$esctitle.$ext"
     [ -n "$start" ] && echo "Splitting \"$title\"..." && ffmpeg -nostdin -y -loglevel -8 -i "$inputaudio" -ss "$start" -to "$end" -vn "$file" &&
-        echo "Tagging \"$title\"..." && tag -a "$author" -A "$booktitle" -t "$title" -n "$track" -N "$total" -d "$year" "$file"
+    echo "Tagging \"$title\"..." && tag -a "$author" -A "$booktitle" -t "$title" -n "$track" -N "$total" -d "$year" "$file"
     track="$((track+1))"
-    start="$end"
 done < "$2"
