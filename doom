@@ -1,0 +1,2 @@
+#!/bin/sh
+chocolate-doom -iwad /home/chris/.local/share/games/doom/DOOM1.WAD
