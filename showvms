@@ -1,0 +1,5 @@
+#/bin/sh
+echo 'proxmox1'
+ssh root@proxmox1 'qm list'
+echo 'proxmox2'
+ssh root@proxmox2 'qm list'
