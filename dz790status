@@ -1,0 +1,20 @@
+#!/bin/sh
+echo 'dz790pdu' > ~/dz790status.txt
+ssh root@dz790pdu -o ConnectTimeout=10 'systemctl status ams-services | grep Active' >> ~/dz790status.txt
+
+echo 'dz790prombrok' >> ~/dz790status.txt
+ssh root@dz790prombrok -o ConnectTimeout=10 'systemctl status ams-services | grep Active' >> ~/dz790status.txt
+
+echo 'dz790custbrok' >> ~/dz790status.txt
+ssh root@dz790custbrok -o ConnectTimeout=10 'systemctl status ams-services | grep Active' >> ~/dz790status.txt
+
+echo 'dz790ue1' >> ~/dz790status.txt
+ssh root@dz790ue1 -o ConnectTimeout=10 'systemctl status ams-services | grep Active' >> ~/dz790status.txt
+
+echo 'dz790health' >> ~/dz790status.txt
+ssh root@dz790health -o ConnectTimeout=10 'systemctl status ams-services | grep Active' >> ~/dz790status.txt
+
+echo 'dz790security' >> ~/dz790status.txt
+ssh root@dz790security -o ConnectTimeout=10 'systemctl status ams-security | grep Active' >> ~/dz790status.txt
+
+cat ~/dz790status.txt
