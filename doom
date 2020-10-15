@@ -1,2 +1,3 @@
 #!/bin/sh
-chocolate-doom -iwad /home/chris/.local/share/games/doom/DOOM1.WAD
+game=$(ls -1 $HOME/.local/share/games/doom | dmenu)
+chocolate-doom -iwad /home/chris/.local/share/games/doom/$game
