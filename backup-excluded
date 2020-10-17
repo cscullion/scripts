@@ -10,8 +10,7 @@ VideoDecodeStats
 src/XCel
 src/node
 ISO
-NCR/DelvToCust
-NCR/CMTeam
+NCR
 .cache
 .mozilla
 .cargo
