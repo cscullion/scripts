@@ -1,5 +1,5 @@
 #/bin/sh
 echo 'proxmox1'
-ssh root@proxmox1 'qm list'
+ssh root@proxmox1 'uptime && qm list'
 echo 'proxmox2'
-ssh root@proxmox2 'qm list'
+ssh root@proxmox2 'uptime && qm list'
