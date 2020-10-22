@@ -17,4 +17,7 @@ ssh root@dz790health -o ConnectTimeout=10 'sudo shutdown -h now' >> ~/dz790shutd
 echo 'dz790security' >> ~/dz790shutdown.txt
 ssh root@dz790security -o ConnectTimeout=10 'sudo shutdown -h now' >> ~/dz790shutdown.txt
 
+echo 'dz790logix' >> ~/dz790shutdown.txt
+net rpc shutdown -f -t 0 -U AzureUser%DZAPassword@1 -I dz790logix >> ~/dz790shutdown.txt
+
 cat ~/dz790shutdown.txt
