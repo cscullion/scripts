@@ -1,0 +1,2 @@
+#!/bin/sh
+sudo mount -t cifs //plex2/music /mnt/music -o username=chris

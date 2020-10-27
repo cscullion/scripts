@@ -1,2 +1,0 @@
-#!/bin/sh
-sudo mount -t cifs //plex2/movies /mnt/win -o username=chris
