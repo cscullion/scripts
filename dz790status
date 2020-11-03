@@ -1,20 +1,36 @@
 #!/bin/sh
-echo 'dz790pdu' > ~/dz790status.txt
-ssh root@dz790pdu -o ConnectTimeout=10 'systemctl status ams-services | grep Active' >> ~/dz790status.txt
 
-echo 'dz790prombrok' >> ~/dz790status.txt
-ssh root@dz790prombrok -o ConnectTimeout=10 'systemctl status ams-services | grep Active' >> ~/dz790status.txt
+cp /dev/null ~/dz790status
 
-echo 'dz790custbrok' >> ~/dz790status.txt
-ssh root@dz790custbrok -o ConnectTimeout=10 'systemctl status ams-services | grep Active' >> ~/dz790status.txt
+echo -e "\ndz790pdu" >> ~/dz790status.txt
+ssh root@dz790pdu -o ConnectTimeout=10 'systemctl status ams-services | grep Active' 2> /dev/null >> ~/dz790status.txt
+ssh root@dz790pdu -o ConnectTimeout=10 'cd /opt/wildfly-10.0.0.Final/standalone/deployments/ && ls -1 *.war.*' 2> /dev/null  | sed 's/^/   /' >> ~/dz790status.txt
 
-echo 'dz790ue1' >> ~/dz790status.txt
-ssh root@dz790ue1 -o ConnectTimeout=10 'systemctl status ams-services | grep Active' >> ~/dz790status.txt
+echo -e "\ndz790prombrok" >> ~/dz790status.txt
+ssh root@dz790prombrok -o ConnectTimeout=10 'systemctl status ams-services | grep Active' 2> /dev/null >> ~/dz790status.txt
+ssh root@dz790prombrok -o ConnectTimeout=10 'cd /opt/wildfly-10.0.0.Final/standalone/deployments/ && ls -1 *.war.*' 2> /dev/null | sed 's/^/   /' >> ~/dz790status.txt
 
-echo 'dz790health' >> ~/dz790status.txt
-ssh root@dz790health -o ConnectTimeout=10 'systemctl status ams-services | grep Active' >> ~/dz790status.txt
+echo -e "\ndz790custbrok" >> ~/dz790status.txt
+ssh root@dz790custbrok -o ConnectTimeout=10 'systemctl status ams-services | grep Active' 2> /dev/null >> ~/dz790status.txt
+ssh root@dz790custbrok -o ConnectTimeout=10 'cd /opt/wildfly-10.0.0.Final/standalone/deployments/ && ls -1 *.war.*' 2> /dev/null | sed 's/^/   /' >> ~/dz790status.txt
 
-echo 'dz790security' >> ~/dz790status.txt
-ssh root@dz790security -o ConnectTimeout=10 'systemctl status ams-security | grep Active' >> ~/dz790status.txt
+echo -e "\ndz790health" >> ~/dz790status.txt
+ssh root@dz790health -o ConnectTimeout=10 'systemctl status ams-services | grep Active' 2> /dev/null >> ~/dz790status.txt
+ssh root@dz790health -o ConnectTimeout=10 'cd /opt/wildfly-10.0.0.Final/standalone/deployments/ && ls -1 *.war.*' 2> /dev/null | sed 's/^/   /' >> ~/dz790status.txt
+
+echo -e "\ndz790ue1" >> ~/dz790status.txt
+ssh root@dz790ue1 -o ConnectTimeout=10 'systemctl status ams-services | grep Active' 2> /dev/null >> ~/dz790status.txt
+ssh root@dz790ue1 -o ConnectTimeout=10 'cd /opt/wildfly-10.0.0.Final/standalone/deployments/ && ls -1 *.war.*' 2> /dev/null | sed 's/^/   /' >> ~/dz790status.txt
+ssh root@dz790ue1 -o ConnectTimeout=10 'service NCRUEIOServer status | grep run' 2> /dev/null | sed 's/^/   NCRUEIOServer /' >> ~/dz790status.txt
+
+echo -e "\ndz790security" >> ~/dz790status.txt
+ssh root@dz790security -o ConnectTimeout=10 'systemctl status ams-security | grep Active' 2>/dev/null >> ~/dz790status.txt
+
+# echo -e "\ndz790cpe1" >> ~/dz790status.txt
+# ssh root@dz790cpe1 -o ConnectTimeout=10 'service tcpip_integration status | grep running' | sed 's/^/   /' >> ~/dz790status.txt
+
+echo -e "\ndz790logix" >> ~/dz790status.txt
+curl -I "dz790logix/logix/login.aspx" 2>&1 | awk '/HTTP\// {print $2}' | sed 's/^/   LogixUI response /' >> ~/dz790status.txt
 
 cat ~/dz790status.txt
+rm ~/dz790status.txt
