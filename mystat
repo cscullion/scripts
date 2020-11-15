@@ -1,5 +1,10 @@
 #!/bin/sh
 
+update_ytq() {
+  ytq=$(tsp -l | grep 'queued\|running' | wc -l)
+  fytq="{\"full_text\":\"ytq: $ytq\"}"
+}
+
 update_temp() {
   temp=$(sensors | grep 'Core 0' | awk '{ print $3 }')
   ftemp="{\"color\":\"#FFFFFF\",\"full_text\":\"Temp: $temp\"}"
@@ -69,12 +74,13 @@ update_bat() {
   fi
 }
 
-i3status | (read line && echo "$line" && read line && echo "$line" && read line && echo "$line"  && update_temp && update_mem && update_bat && update_vol && update_vpn && while :
+i3status | (read line && echo "$line" && read line && echo "$line" && read line && echo "$line"  && update_temp && update_mem && update_bat && update_vol && update_vpn && update_ytq && while :
 do
   read line
   update_temp
   update_mem
   update_bat
   update_vol
-  echo ",[$fbat,$fvol,$fmem,$ftemp,${line#,\[}" || exit 1
+  update_ytq
+  echo ",[$fytq,$fbat,$fvol,$fmem,$ftemp,${line#,\[}" || exit 1
 done)

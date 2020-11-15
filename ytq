@@ -1,3 +1,4 @@
 #!/bin/sh
 tsp youtube-dl -f 'bestvideo[height<=720]+bestaudio/best[height<=720]' -q --no-warnings -o '/home/chris/Downloads/ytq/%(title)s-%(id)s.%(ext)s' $1
 #tsp youtube-dl -f 'bestvideo[height<=720]+bestaudio/best[height<=720]' -q -o '/home/chris/Downloads/ytq/%(title)s-%(id)s.%(ext)s' $1 2> ~/ytq.log
+refresh-i3status
