@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo -e "\n$1"
+ssh root@$1 -o ConnectTimeout=10 'service tcpip_integration status | grep running' | sed 's/^/   /'

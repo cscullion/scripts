@@ -1,51 +1,9 @@
 #!/bin/sh
 
-stat_broker() {
-	echo -e "\n$1"
-	ssh root@$1 -o ConnectTimeout=10 'systemctl status ams-services | grep Active' 2> /dev/null
-	ssh root@$1 -o ConnectTimeout=10 'cd /opt/wildfly-10.0.0.Final/standalone/deployments/ && ls -1 *.war.*' 2> /dev/null  | sed 's/^/   /'
-}
-
-stat_broker_old() {
-	echo -e "\n$1"
-	ssh root@$1 -o ConnectTimeout=10 'systemctl status amsbroker | grep Active' 2> /dev/null
-	ssh root@$1 -o ConnectTimeout=10 'cd /opt/wildfly-10.0.0.Final/standalone/deployments/ && ls -1 *.war.*' 2> /dev/null  | sed 's/^/   /'
-}
-
-stat_ue() {
-	echo -e "\n$1"
-	ssh root@$1 -o ConnectTimeout=10 'systemctl status ams-services | grep Active' 2> /dev/null
-	ssh root@$1 -o ConnectTimeout=10 'cd /opt/wildfly-10.0.0.Final/standalone/deployments/ && ls -1 *.war.*' 2> /dev/null | sed 's/^/   /'
-	ssh root@$1 -o ConnectTimeout=10 'service NCRUEIOServer status | grep run' 2> /dev/null | sed 's/^/   NCRUEIOServer /'
-}
-
-stat_ue_old() {
-	echo -e "\n$1"
-	ssh root@$1 -o ConnectTimeout=10 'systemctl status amsbroker | grep Active' 2> /dev/null
-	ssh root@$1 -o ConnectTimeout=10 'cd /opt/wildfly-10.0.0.Final/standalone/deployments/ && ls -1 *.war.*' 2> /dev/null | sed 's/^/   /'
-	ssh root@$1 -o ConnectTimeout=10 'service NCRUEIOServer status | grep run' 2> /dev/null | sed 's/^/   NCRUEIOServer /'
-}
-
-stat_cpe() {
-	echo -e "\n$1"
-	ssh root@$1 -o ConnectTimeout=10 'service tcpip_integration status | grep running' | sed 's/^/   /'
-}
-
-stat_security() {
-	echo -e "\n$1"
-	ssh root@$1 -o ConnectTimeout=10 'systemctl status ams-security | grep Active' 2>/dev/null
-}
-
-stat_logix() {
-	echo -e "\n$1"
-	curl -I "$1/logix/login.aspx" 2>&1 | awk '/HTTP\// {print $2}' | sed 's/^/   LogixUI response /'
-}
-
-stat_broker "dz-pdu"
-stat_broker "dz-prombrok1"
-stat_broker "dz-custbrok1"
-stat_broker "dz-health"
-stat_ue "dz-ue1"
-stat_cpe "dz-cpe1"
-stat_logix "dz-logix"
-
+stat-broker "dz-pdu"
+stat-broker "dz-prombrok1"
+stat-broker "dz-custbrok1"
+stat-broker "dz-health"
+stat-ue "dz-ue1"
+stat-cpe "dz-cpe1"
+stat-logix "dz-logix"

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo -e "\n$1"
+curl -I "$1/logix/login.aspx" 2>&1 | awk '/HTTP\// {print $2}' | sed 's/^/   LogixUI response /'

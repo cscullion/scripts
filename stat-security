@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo -e "\n$1 (security)"
+ssh root@$1 -o ConnectTimeout=10 'systemctl status ams-security | grep Active' 2>/dev/null

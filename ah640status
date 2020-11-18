@@ -1,80 +1,9 @@
 #!/bin/sh
 
-stat_broker() {
-	echo -e "\n$1"
-	ssh root@$1 -o ConnectTimeout=10 'systemctl status ams-services | grep Active' 2> /dev/null
-	ssh root@$1 -o ConnectTimeout=10 'cd /opt/wildfly-10.0.0.Final/standalone/deployments/ && ls -1 *.war.*' 2> /dev/null  | sed 's/^/   /'
-}
-
-stat_broker_old() {
-	echo -e "\n$1"
-	ssh root@$1 -o ConnectTimeout=10 'systemctl status amsbroker | grep Active' 2> /dev/null
-	ssh root@$1 -o ConnectTimeout=10 'cd /opt/wildfly-10.0.0.Final/standalone/deployments/ && ls -1 *.war.*' 2> /dev/null  | sed 's/^/   /'
-}
-
-stat_ue() {
-	echo -e "\n$1"
-	ssh root@$1 -o ConnectTimeout=10 'systemctl status ams-services | grep Active' 2> /dev/null
-	ssh root@$1 -o ConnectTimeout=10 'cd /opt/wildfly-10.0.0.Final/standalone/deployments/ && ls -1 *.war.*' 2> /dev/null | sed 's/^/   /'
-	ssh root@$1 -o ConnectTimeout=10 'service NCRUEIOServer status | grep run' 2> /dev/null | sed 's/^/   NCRUEIOServer /'
-}
-
-stat_ue_old() {
-	echo -e "\n$1"
-	ssh root@$1 -o ConnectTimeout=10 'systemctl status amsbroker | grep Active' 2> /dev/null
-	ssh root@$1 -o ConnectTimeout=10 'cd /opt/wildfly-10.0.0.Final/standalone/deployments/ && ls -1 *.war.*' 2> /dev/null | sed 's/^/   /'
-	ssh root@$1 -o ConnectTimeout=10 'service NCRUEIOServer status | grep run' 2> /dev/null | sed 's/^/   NCRUEIOServer /'
-}
-
-stat_cpe() {
-	echo -e "\n$1"
-	ssh root@$1 -o ConnectTimeout=10 'service tcpip_integration status | grep running' | sed 's/^/   /'
-}
-
-stat_security() {
-	echo -e "\n$1"
-	ssh root@$1 -o ConnectTimeout=10 'systemctl status ams-security | grep Active' 2>/dev/null
-}
-
-stat_logix() {
-	echo -e "\n$1"
-	curl -I "$1/logix/login.aspx" 2>&1 | awk '/HTTP\// {print $2}' | sed 's/^/   LogixUI response /'
-}
-
-stat_broker "ah-pdu"
-stat_broker "ah-prombrok1"
-stat_broker "ah-custbrok1"
-stat_ue_old "ah-ue1"
-stat_ue_old "ah-ue2"
-stat_cpe "ah-cpe7"
-stat_logix "ah-logix"
-
-#echo -e "\ndz790pdu"
-#ssh root@dz790pdu -o ConnectTimeout=10 'systemctl status ams-services | grep Active' 2> /dev/null
-#ssh root@dz790pdu -o ConnectTimeout=10 'cd /opt/wildfly-10.0.0.Final/standalone/deployments/ && ls -1 *.war.*' 2> /dev/null  | sed 's/^/   /'
-
-#echo -e "\ndz790prombrok"
-#ssh root@dz790prombrok -o ConnectTimeout=10 'systemctl status ams-services | grep Active' 2> /dev/null
-#ssh root@dz790prombrok -o ConnectTimeout=10 'cd /opt/wildfly-10.0.0.Final/standalone/deployments/ && ls -1 *.war.*' 2> /dev/null | sed 's/^/   /'
-
-#echo -e "\ndz790custbrok"
-#ssh root@dz790custbrok -o ConnectTimeout=10 'systemctl status ams-services | grep Active' 2> /dev/null
-#ssh root@dz790custbrok -o ConnectTimeout=10 'cd /opt/wildfly-10.0.0.Final/standalone/deployments/ && ls -1 *.war.*' 2> /dev/null | sed 's/^/   /'
-
-#echo -e "\ndz790health"
-#ssh root@dz790health -o ConnectTimeout=10 'systemctl status ams-services | grep Active' 2> /dev/null
-#ssh root@dz790health -o ConnectTimeout=10 'cd /opt/wildfly-10.0.0.Final/standalone/deployments/ && ls -1 *.war.*' 2> /dev/null | sed 's/^/   /'
-
-#echo -e "\ndz790ue1"
-#ssh root@dz790ue1 -o ConnectTimeout=10 'systemctl status ams-services | grep Active' 2> /dev/null
-#ssh root@dz790ue1 -o ConnectTimeout=10 'cd /opt/wildfly-10.0.0.Final/standalone/deployments/ && ls -1 *.war.*' 2> /dev/null | sed 's/^/   /'
-#ssh root@dz790ue1 -o ConnectTimeout=10 'service NCRUEIOServer status | grep run' 2> /dev/null | sed 's/^/   NCRUEIOServer /'
-
-#echo -e "\ndz790security"
-#ssh root@dz790security -o ConnectTimeout=10 'systemctl status ams-security | grep Active' 2>/dev/null
-
-# echo -e "\ndz790cpe1"
-# ssh root@dz790cpe1 -o ConnectTimeout=10 'service tcpip_integration status | grep running' | sed 's/^/   /'
-
-#echo -e "\ndz790logix"
-#curl -I "dz790logix/logix/login.aspx" 2>&1 | awk '/HTTP\// {print $2}' | sed 's/^/   LogixUI response /'
+stat-broker "ah-pdu"
+stat-broker "ah-prombrok1"
+stat-broker "ah-custbrok1"
+stat-ue_old "ah-ue1"
+stat-ue_old "ah-ue2"
+stat-cpe "ah-cpe7"
+stat-logix "ah-logix"
