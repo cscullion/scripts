@@ -1,0 +1,11 @@
+#!/bin/bash
+
+base_folder="/home/chris/Pictures/screenshots/"
+file_path=${base_folder}$( date '+%Y-%m-%d_%H-%M-%S' )_screenshot.png
+
+if [ "$1" = "-s" ]
+then
+	scrot -s ${file_path}
+else
+	scrot ${file_path}
+fi
