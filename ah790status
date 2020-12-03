@@ -1,0 +1,6 @@
+#!/bin/sh
+
+stat-broker "ah790broker"
+stat-security "ah790broker"
+stat-cpe "ah790cpe1"
+stat-logix "ah790logix"
