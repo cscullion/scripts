@@ -2,5 +2,8 @@
 echo 'ah790broker'
 ssh root@ah790broker -o ConnectTimeout=10 'sudo shutdown -h now' 2> /dev/null
 
+echo 'ah790ue1'
+ssh root@ah790ue1 -o ConnectTimeout=10 'sudo shutdown -h now' 2> /dev/null
+
 echo 'ah790cpe1'
 ssh root@ah790cpe1 -o ConnectTimeout=10 'sudo shutdown -h now' 2> /dev/null
