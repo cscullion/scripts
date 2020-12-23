@@ -2,4 +2,4 @@
 
 echo -e "\n$1"
 ssh root@$1 -o ConnectTimeout=10 'systemctl status ams-services | grep Active' 2> /dev/null
-ssh root@$1 -o ConnectTimeout=10 'cd /opt/wildfly-10.0.0.Final/standalone/deployments/ && ls -1 *.war.*' 2> /dev/null  | sed 's/^/   /'
+ssh root@$1 -o ConnectTimeout=10 'cd /opt/wildfly*/standalone/deployments/ && ls -1 *.war.*' 2> /dev/null  | sed 's/^/   /'
