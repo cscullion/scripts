@@ -1,0 +1,6 @@
+#!/bin/sh
+
+stat-broker "hl-dz790broker"
+stat-security "hl-dz790security"
+stat-ue "hl-dz790ue1"
+stat-logix "hl-dz790logix"
