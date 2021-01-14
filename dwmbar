@@ -11,7 +11,7 @@ update_inet() {
 }
 
 update_cpu() {
-	cpu=$(uptime | awk '{ print $11 }')
+	cpu=$(uptime | awk '{ print $8 }' | tr -d ',')
 	fcpu="Ld $cpu"
 }
 
